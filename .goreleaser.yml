@@ -1,0 +1,52 @@
+project_name: mermaid-lint
+
+before:
+  hooks:
+    - go mod tidy
+    - go test ./...
+
+builds:
+  - main: ./cmd/mermaid-lint
+    binary: mermaid-lint
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+
+brews:
+  - repository:
+      owner: skjutare
+      name: homebrew-tap
+    directory: Formula
+    homepage: "https://github.com/skjutare/mermaid-lint"
+    description: "A lint tool for Mermaid diagram files and Mermaid blocks in Markdown"
+    license: "MIT"
+    test: |
+      system "#{bin}/mermaid-lint", "--version"
+    install: |
+      bin.install "mermaid-lint"

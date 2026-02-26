@@ -4,17 +4,29 @@ A lint tool for [Mermaid](https://mermaid.js.org/) diagram files (`.mmd`) and Me
 
 ## Installation
 
+### Homebrew
+
+```bash
+brew install skjutare/tap/mermaid-lint
+```
+
+### Go
+
 ```bash
 go install github.com/skjutare/mermaid-lint/cmd/mermaid-lint@latest
 ```
 
-Or build from source:
+### From source
 
 ```bash
 git clone https://github.com/skjutare/mermaid-lint.git
 cd mermaid-lint
 go build -o mermaid-lint ./cmd/mermaid-lint
 ```
+
+### Binary releases
+
+Download pre-built binaries for Linux, macOS, and Windows from the [releases page](https://github.com/skjutare/mermaid-lint/releases).
 
 ## Usage
 
