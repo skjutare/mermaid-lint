@@ -1,5 +1,5 @@
 # Binaries
-mermaid-lint
+/mermaid-lint
 *.exe
 *.dll
 *.so
